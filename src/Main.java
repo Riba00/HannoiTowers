@@ -1,3 +1,4 @@
+import java.util.InputMismatchException;
 import java.util.Scanner;
 import java.util.Stack;
 
@@ -14,31 +15,29 @@ public class Main {
 
     public static void menuInicial() {
         Scanner teclat = new Scanner(System.in);
-
-        int respostaInicial;
+        // VARIABLE DE LA RESPOSTA INICIAL
+        int respostaInicial = 0;
 
         do {
             do {
+                //MENU INICIAL
                 System.out.println();
                 System.out.println("---TORRES DE HANOI---");
                 System.out.println("1- Regles");
                 System.out.println("2- Jugar");
                 System.out.println("3- Sortir");
                 System.out.print("Resposta: ");
-                respostaInicial = teclat.nextInt();
-                System.out.println();
-
+                try {
+                    respostaInicial = teclat.nextInt();
+                } catch (InputMismatchException e) {
+                    teclat.next();
+                }
             } while (!respostaInicialCorrecta(respostaInicial));
 
             switch (respostaInicial) {
-                case 1:
-                    showRegles();
-                    break;
-                case 2:
-                    jugar();
-                    break;
-                case 3:
-                    System.out.println("Adeu, fins la pròxima!!!");
+                case 1 -> showRegles();
+                case 2 -> jugar();
+                case 3 -> System.out.println("Adeu, fins la pròxima!!!");
             }
         } while (respostaInicial != 3);
     }
@@ -53,13 +52,23 @@ public class Main {
         showPiles();
         do {
             do {
+                pilaOrigen=0;
+                pilaDestino=0;
                 System.out.print("De quina pila vols moure? ");
-                pilaOrigen = teclat.nextInt();
+                try {
+                    pilaOrigen = teclat.nextInt();
+                } catch (InputMismatchException e) {
+                    teclat.next();
+                }
             } while (!verificarMoviment(pilaOrigen));
 
             do {
                 System.out.print("On ho vols deixar? ");
-                pilaDestino = teclat.nextInt();
+                try {
+                    pilaDestino = teclat.nextInt();
+                } catch (InputMismatchException e) {
+                    teclat.next();
+                }
             } while (!verificarMoviment(pilaDestino));
 
             moureDisco(pilaOrigen, pilaDestino);
@@ -69,10 +78,14 @@ public class Main {
         pila3.clear();
     }
 
-
     public static boolean verificarMoviment(int numero) {
         if (numero >= 1 && numero <= 3) return true;
         System.out.println("Numero incorrecte");
+        return false;
+    }
+
+    public static boolean verificarDiscos(int numeroDiscos) {
+        if (numeroDiscos > 0) return true;
         return false;
     }
 
@@ -185,8 +198,16 @@ public class Main {
 
         int numeroDiscos;
 
-        System.out.print("Numero de discos a jugar: ");
-        numeroDiscos = teclat.nextInt();
+        do {
+            numeroDiscos = 0;
+            System.out.print("Numero de discos a jugar: ");
+            try {
+                numeroDiscos = teclat.nextInt();
+            } catch (InputMismatchException e) {
+                System.out.println("Numero incorrecte");
+                teclat.next();
+            }
+        }while (!verificarDiscos(numeroDiscos));
 
         for (int i = numeroDiscos; i > 0; i--) {
             pila1.push(i);
