@@ -10,8 +10,6 @@ public class Main {
 
     public static void main(String[] args) {
         menuInicial();
-
-
     }
 
     public static void menuInicial() {
@@ -43,8 +41,6 @@ public class Main {
                     System.out.println("Adeu, fins la pròxima!!!");
             }
         } while (respostaInicial != 3);
-
-
     }
 
     public static void jugar() {
@@ -54,23 +50,25 @@ public class Main {
         int pilaDestino;
 
         plenarPila1PilaFinal();
+        showPiles();
         do {
-            showPiles();
             do {
                 System.out.print("De quina pila vols moure? ");
                 pilaOrigen = teclat.nextInt();
-            }while (!verificarMoviment(pilaOrigen));
+            } while (!verificarMoviment(pilaOrigen));
 
             do {
                 System.out.print("On ho vols deixar? ");
                 pilaDestino = teclat.nextInt();
-            }while (!verificarMoviment(pilaDestino));
-
+            } while (!verificarMoviment(pilaDestino));
 
             moureDisco(pilaOrigen, pilaDestino);
-        } while (pilaFinal != pila3);
-
+            showPiles();
+        } while (!pila3.equals(pilaFinal));
+        System.out.println("FELICITATS!!!! HAS GUANYAT");
+        pila3.clear();
     }
+
 
     public static boolean verificarMoviment(int numero) {
         if (numero >= 1 && numero <= 3) return true;
@@ -196,7 +194,6 @@ public class Main {
 
         for (int i = numeroDiscos; i > 0; i--) {
             pilaFinal.push(i);
-
         }
     }
 
