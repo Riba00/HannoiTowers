@@ -12,7 +12,9 @@ public class Main {
     public static void main(String[] args) {
         menuInicial();
     }
-
+/*
+    MENU INICIAL DEL PROGRAMA
+ */
     public static void menuInicial() {
         Scanner teclat = new Scanner(System.in);
         // VARIABLE DE LA RESPOSTA INICIAL
@@ -41,7 +43,9 @@ public class Main {
             }
         } while (respostaInicial != 3);
     }
-
+/*
+    MÈTODE QUE PERMET JUGAR
+ */
     public static void jugar() {
         Scanner teclat = new Scanner(System.in);
 
@@ -77,18 +81,24 @@ public class Main {
         System.out.println("FELICITATS!!!! HAS GUANYAT");
         pila3.clear();
     }
-
+/*
+    VERIFICA SI EL MOVIMENT ÉS CORRECTE
+ */
     public static boolean verificarMoviment(int numero) {
         if (numero >= 1 && numero <= 3) return true;
         System.out.println("Numero incorrecte");
         return false;
     }
-
+/*
+    MÈTODE QUE VERIFICA SI EL NOMBRE DE DISCOS ÉS CORRECTE
+ */
     public static boolean verificarDiscos(int numeroDiscos) {
         if (numeroDiscos > 0) return true;
         return false;
     }
-
+/*
+    MÈTODE QUE MOU UN DIC D'UNA PILA A UNA ALTRA PILA
+ */
     public static void moureDisco(int pilaOrigen, int pilaDestino) {
 
         int ultimElementPila1 = 100;
@@ -166,7 +176,9 @@ public class Main {
             }
         }
     }
-
+/*
+    MOSTRA LES REGLES DEL JOC
+ */
     public static void showRegles() {
         System.out.println("                REGLES");
         System.out.println("- El número indica el diàmetre del disc");
@@ -184,7 +196,9 @@ public class Main {
         System.out.println("                  PILA3       PILA 3");
 
     }
-
+/*
+    COMPROVA LA RESPOSTA INICIAL
+ */
     public static boolean respostaInicialCorrecta(int respostaInicial) {
         if (respostaInicial == 1 || respostaInicial == 2 || respostaInicial == 3) return true;
         else {
@@ -192,7 +206,9 @@ public class Main {
             return false;
         }
     }
-
+/*
+    MÈTODE QUE PLENA LA PILA 1 I UNA PILA MODEL FINAL EN FUNCIO DELS DISCOS DE L'USUARI
+ */
     public static void plenarPila1PilaFinal() {
         Scanner teclat = new Scanner(System.in);
 
@@ -217,7 +233,9 @@ public class Main {
             pilaFinal.push(i);
         }
     }
-
+/*
+    MÈTODE PER A MOSTRAR L'ESTAT DE LES PILES
+ */
     public static void showPiles() {
         if (pila1.empty()) {
             System.out.println("  -");
